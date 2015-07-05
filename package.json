@@ -1,6 +1,6 @@
 {
   "name": "bagpack",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Versatile local package manager",
   "main": "bagpack.js",
   "bin": {
