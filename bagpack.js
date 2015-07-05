@@ -8,7 +8,7 @@ var path = require('path');
 var fs = require('fs');
 var colors = require('colors');
 
-var version = '0.0.0';
+var version = '0.0.1';
 
 var map = (function () {
 	var mapPath = path.join(__dirname, 'map.json');
