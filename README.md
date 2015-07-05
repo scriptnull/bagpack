@@ -38,3 +38,13 @@ Here are some verbs to help you with
 
 ![Demo](https://raw.githubusercontent.com/scriptnull/bagpack/master/demo.gif)
 
+# Contribution 
+Contributions are welcome.
+- Feel free to send in Pull requests. 
+- Report bug if you have found any.
+- Refactor the already existing code.
+- Feature requests and feedback sharing. 
+- Whatever. Lets get started !
+
+# License 
+![GPLv3](https://raw.githubusercontent.com/scriptnull/bagpack/master/GPL.png)
