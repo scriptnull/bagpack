@@ -30,13 +30,29 @@ In order to start working with bagpack, here are some basic concepts.
 - Versioning is not needed as , any changes inside the package will be effective automatically. 
 
 # Commands
-Here are some verbs to help you with 
+you can either use ``bagpack`` or ``bp`` to execute commands on bagpack.
+
 - **pack** or **publish**  - Pack something into the bagpack. This will mean publishing your package via bagpack for using it.
 - **pick** or **install** - Pick anything from bagpack. This means installing a package that is available in the bagpack.
 - **list** - Lists all the things inside the bagpack.
 - **remove** - Removes a package from bagpack.
 
 ![Demo](https://raw.githubusercontent.com/scriptnull/bagpack/master/demo.gif)
+
+# Help
+  Usage: bagpack [options] [command]
+
+  Commands:
+
+    pack|publish [dir]      Packs [dir] directory or current directory.
+    pick|install [package]  Pick (copy) a package from the bagpack
+    list|ls                 Lists all the packages inside the bagpack.
+    remove|rm [package]     Removes a package from the bagpack
+
+  Options:
+
+    -h, --help     output usage information
+    -V, --version  output the version number
 
 # Contribution 
 Contributions are welcome.
