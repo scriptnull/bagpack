@@ -82,6 +82,7 @@ program
 	
 program
 	.command('pack [dir]')
+	.alias('publish')
 	.description('Packs [dir] directory or current directory.')
 	.action(function (dir) {
 	var packagePath = process.cwd();
