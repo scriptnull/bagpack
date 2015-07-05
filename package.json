@@ -2,10 +2,10 @@
   "name": "bagpack",
   "version": "0.0.0",
   "description": "Versatile local package manager",
-  "main": "index.js",
+  "main": "bagpack.js",
   "bin": {
-    "bagpack": "index.js",
-    "bp": "index.js"
+    "bagpack": "bagpack.js",
+    "bp": "bagpack.js"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -27,6 +27,7 @@
   "homepage": "https://github.com/scriptnull/bagpack",
   "dependencies": {
     "colors": "^1.1.2",
-    "commander": "^2.8.1"
+    "commander": "^2.8.1",
+    "ncp": "^2.0.0"
   }
 }

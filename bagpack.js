@@ -1,7 +1,6 @@
+#!/usr/bin/env node
 /// <reference path="typings/node/node.d.ts" />
 /// <reference path="typings/commander/commander.d.ts" />
-//#!/usr/bin/env node
-
 
 
 var program = require('commander');
@@ -46,27 +45,44 @@ var map = (function () {
 	};
 	var removePackage = function (key, done) {
 		deSerializeMapFile(function (err, json) {
-			if (!doesKeyExists(json, key)) done(new Error("Package doesn't exists."));
 			if (err) return done(err);
+			if (!doesKeyExists(json, key)) return done(new Error("Package doesn't exists."));
 			for (var i = 0; i < json.packages.length; i++) {
 				if (json.packages[i].key.toLowerCase().localeCompare(key.toLowerCase()) == 0) {
-					json.packages.splice(i,1);
+					json.packages.splice(i, 1);
 					break;
 				}
 			}
 			writeMapFile(JSON.stringify(json), done);
 		});
 	};
+	var getPath = function (key, done) {
+		deSerializeMapFile(function (err, json) {
+			if (err) return done(err);
+			if (!doesKeyExists(json, key)) return done(new Error("Package doesn't exists."));
+			for (var i = 0; i < json.packages.length; i++) {
+				if (json.packages[i].key.toLowerCase().localeCompare(key.toLowerCase()) == 0) {
+					return done(null, json.packages[i].path);
+				}
+			}
+		});
+	};
 	return {
 		addPackage: addPackage,
 		listAllPackages: listAllPackages,
-		removePackage: removePackage
+		removePackage: removePackage,
+		getPath: getPath
 	};
 })();
 
 program
+	.version(version)
+	.description('Versatile local package manager.');
+	
+	
+program
 	.command('pack [dir]')
-	.description('Packs the directory with name [dir] or current directory.')
+	.description('Packs [dir] directory or current directory.')
 	.action(function (dir) {
 	var packagePath = process.cwd();
 	if (dir) packagePath = path.join(packagePath, dir);
@@ -84,17 +100,54 @@ program
 });
 
 program
+	.command('pick [package]')
+	.alias('install')
+	.description('Pick (copy) a package from the bagpack')
+	.action(function (package) {
+	if (!package)
+		console.log('ERROR '.red + 'Mention a package name.');
+	else {
+		map.getPath(package, function (err, srcPath) {
+			if (err) console.log('ERROR '.red + err.message);
+			else {
+				var destPath = path.join(process.cwd(), package);
+				fs.mkdir(destPath, function (err) {
+					if (err) console.log('ERROR '.red + err.message);
+					else 
+					require('ncp').ncp(srcPath, destPath, function (err) {
+						if (err) console.log('ERROR '.red + err.message);
+						else {
+							fs.readdir(destPath , function(err, files){
+								if (err) console.log('ERROR '.red + err.message);
+								else{
+									console.log(package);
+									for (var i = 0; i < files.length; i++){
+										 if( i == files.length - 1 ) console.log('└──' + files[i]); else console.log('├──' + files[i]);
+									}
+									console.log('PICKED '.green + package + ' from bagapack successfully.');	
+								}
+							});
+						}
+					});
+				});
+			}
+		});
+	}
+});
+
+program 
 	.command('list')
 	.alias('ls')
 	.description('Lists all the packages inside the bagpack.')
 	.action(function () {
 	map.listAllPackages(function (err, arrOfKeys) {
-		arrOfKeys.forEach(function (k) { console.log('|- ' + k); });
+		arrOfKeys.forEach(function (k) { console.log(k); });
 	});
 });
 
 program
 	.command('remove [package]')
+	.alias('rm')
 	.description('Removes a package from the bagpack')
 	.action(function (package) {
 	if (!package)
@@ -106,9 +159,9 @@ program
 		});
 	}
 });
+	
 
-program.version(version);
-
-
-program.parse(process.argv);
-
+program
+	.parse(process.argv);
+	
+if (!program.args.length) program.help();
