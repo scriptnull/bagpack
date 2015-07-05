@@ -29,10 +29,12 @@ In order to start working with bagpack, here are some basic concepts.
 - All bagpack packages are identified as directories , with directory name as the package name.
 - Versioning is not needed as , any changes inside the package will be effective automatically. 
 
-# Verbs
+# Commands
 Here are some verbs to help you with 
 - **pack** or **publish**  - Pack something into the bagpack. This will mean publishing your package via bagpack for using it.
 - **pick** or **install** - Pick anything from bagpack. This means installing a package that is available in the bagpack.
 - **list** - Lists all the things inside the bagpack.
 - **remove** - Removes a package from bagpack.
+
+![Demo](https://raw.githubusercontent.com/scriptnull/bagpack/master/demo.gif)
 
