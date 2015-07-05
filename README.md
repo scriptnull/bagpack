@@ -1,6 +1,6 @@
 ![bagpack](https://raw.githubusercontent.com/scriptnull/bagpack/master/logo.png)
 
-[![Join the chat at https://gitter.im/scriptnull/bagpack](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/scriptnull/bagpack?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+![npm](https://img.shields.io/npm/v/bagpack.svg?style=flat-square) ![License](https://img.shields.io/npm/l/bagpack.svg?style=flat-square) [![Join the chat at https://gitter.im/scriptnull/bagpack](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/scriptnull/bagpack?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 bagpack is a versatile local package manager. bagpack has 2 ideas at its core , 
 - Versatile - Don't care what the package is. Just deliver it.
